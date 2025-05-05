@@ -1,0 +1,16 @@
+﻿@model ErrorViewModel
+
+
+
+
+<h1 class="text-danger">Произошла ошибка.</h1>
+
+@if (!string.IsNullOrEmpty(Model.RequestId))
+
+{
+    <p><strong>Request ID:</strong> <code>@Model.RequestId</code></p>
+}
+
+<p>@ViewData["ErrorMessage"]</p>
+<p>Попробуйте позже или свяжитесь с администратором.</p>
+    

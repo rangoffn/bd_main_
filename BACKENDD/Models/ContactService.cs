@@ -16,9 +16,19 @@ namespace BACKENDD.Models
 
         public async Task<bool> SaveContactAsync(Contact contact)
         {
-            _context.Contacts.Add(contact);  
-            await _context.SaveChangesAsync();  
-            return true;  
+            try
+            {
+                _context.Contacts.Add(contact);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                // Логируем еррор и выводим в консоль!!!!
+               
+                Console.Error.WriteLine($"Database error: {dbEx.Message}");
+                return false;
+            }
         }
 
         public List<Contact> GetAllContacts()
