@@ -1,5 +1,6 @@
 using BACKENDD.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace BACKENDD.Controllers
 {
@@ -16,6 +17,22 @@ namespace BACKENDD.Controllers
         {
             return View();
         }
+        public IActionResult HandleStatusCode(int code)           //ERROR 404
+        {
+            if (code == 404)
+            {
+                ViewData["ErrorMessage"] = "Страница не найдена!.";
+            }
+            return View("Error");
+        }
+
+        public IActionResult Error()    //errors
+        {
+            var requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            var errorViewModel = new ErrorViewModel { RequestId = requestId };
+            return View("Error", errorViewModel);
+        }
+
         public IActionResult NewTABBB()
         {
             return View();

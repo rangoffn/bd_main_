@@ -13,13 +13,15 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment()) 
 {
     app.UseDeveloperExceptionPage();
 }
-else
+else                                                                  //ƒÀﬂ Œÿ»¡Œ !!!!!!!!!!!!!!!!   
 {
     app.UseExceptionHandler("/Home/Error");
+    app.UseStatusCodePagesWithReExecute("/Home/HandleStatusCode", "?code={0}");
+
     app.UseHsts();  
 }
 
@@ -28,7 +30,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthorization(); 
 
 app.MapControllerRoute(
     name: "showcontacts",
